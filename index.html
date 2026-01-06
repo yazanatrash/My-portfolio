@@ -1,37 +1,605 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About - Yazan Alatrash</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Yazan Alatrash — Thermal Hydraulics & Nuclear Safety</title>
+  <meta name="description" content="Thermal-hydraulics & CFD engineer. Nuclear safety analysis with RELAP5/MARS and CFD (CUPID/Ansys Fluent). Senior Consultant at NRG PALLAS." />
+
+  <style>
+    :root{
+      --bg: #0b1020;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.08);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --muted2: rgba(255,255,255,.56);
+      --border: rgba(255,255,255,.12);
+      --accent: #7dd3fc;
+      --accent2:#a78bfa;
+      --shadow: 0 18px 55px rgba(0,0,0,.45);
+      --r: 18px;
+      --r2: 14px;
+      --max: 1120px;
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#f7f8fb;
+        --card: rgba(2,6,23,.04);
+        --card2: rgba(2,6,23,.06);
+        --text: rgba(2,6,23,.92);
+        --muted: rgba(2,6,23,.70);
+        --muted2: rgba(2,6,23,.58);
+        --border: rgba(2,6,23,.12);
+        --shadow: 0 18px 55px rgba(2,6,23,.12);
+      }
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% 5%, rgba(125,211,252,.18), transparent 60%),
+        radial-gradient(900px 500px at 80% 0%, rgba(167,139,250,.18), transparent 60%),
+        radial-gradient(800px 450px at 70% 95%, rgba(52,211,153,.12), transparent 60%),
+        var(--bg);
+      line-height:1.55;
+      letter-spacing:.2px;
+    }
+    a{color:inherit; text-decoration:none}
+    a:hover{ text-decoration:underline; text-underline-offset: 3px; }
+
+    .wrap{max-width:var(--max); margin:0 auto; padding:24px}
+    .topbar{
+      position:sticky; top:0; z-index:20;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,0));
+      border-bottom:1px solid rgba(255,255,255,.05);
+    }
+    @media (prefers-color-scheme: light){
+      .topbar{
+        background: linear-gradient(to bottom, rgba(247,248,251,.92), rgba(247,248,251,.65));
+        border-bottom: 1px solid rgba(2,6,23,.06);
+      }
+    }
+
+    nav{display:flex; align-items:center; justify-content:space-between; gap:18px; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:12px; min-width: 240px;}
+    .dot{
+      width:12px; height:12px; border-radius:999px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      box-shadow:0 0 0 6px rgba(125,211,252,.12);
+      flex:0 0 auto;
+    }
+    .brand b{font-size:14px; letter-spacing:.6px; text-transform:uppercase}
+    .brand span{display:block; font-size:12px; color:var(--muted2); margin-top:2px}
+
+    .navlinks{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end}
+    .pill{
+      padding:9px 12px; border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.04);
+      color:var(--muted);
+      font-size:13px;
+    }
+    .pill:hover{background:rgba(255,255,255,.07); color:var(--text); text-decoration:none}
+
+    .hero{
+      padding:34px 0 10px;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:22px;
+      align-items:start;
+    }
+    @media (max-width:980px){ .hero{grid-template-columns:1fr} }
+
+    .card{
+      background: linear-gradient(180deg, var(--card), transparent 140%);
+      border:1px solid var(--border);
+      border-radius:var(--r);
+      box-shadow:var(--shadow);
+    }
+    .pad{ padding:22px; }
+
+    h1{
+      margin:0 0 6px;
+      font-size: clamp(28px, 3.6vw, 44px);
+      letter-spacing:-.6px;
+      line-height:1.1;
+    }
+    .subtitle{margin:0 0 14px; color:var(--muted); font-size:15px;}
+    .lede{margin:0; font-size:15px;}
+    .muted{color:var(--muted)}
+    .muted2{color:var(--muted2)}
+
+    .ctaRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; align-items:center}
+    .btn{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 14px; border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.06);
+      font-size:13px;
+    }
+    .btn:hover{background:rgba(255,255,255,.10); text-decoration:none}
+    .btn.primary{
+      border-color: rgba(125,211,252,.35);
+      background: linear-gradient(135deg, rgba(125,211,252,.18), rgba(167,139,250,.14));
+    }
+
+    .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+    .chip{
+      padding:7px 10px; border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.04);
+      color:var(--muted);
+      font-size:12px;
+      white-space:nowrap;
+    }
+
+    section{ margin:18px 0; }
+    .sectionHead{display:flex; justify-content:space-between; align-items:flex-end; gap:12px; margin:10px 0}
+    .sectionHead h2{margin:0; font-size:18px; letter-spacing:-.2px}
+    .sectionHead p{margin:0; font-size:13px; color:var(--muted2)}
+
+    .grid2{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+    @media (max-width:980px){ .grid2{grid-template-columns:1fr} }
+
+    .box{
+      padding:14px;
+      border-radius:var(--r2);
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.04);
+    }
+    .boxTop{display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; align-items:baseline}
+    .boxTop b{font-size:14px}
+    .boxTop span{font-size:12px; color:var(--muted2)}
+    .box p{margin:8px 0 0; font-size:13px; color:var(--muted)}
+
+    ul{margin:10px 0 0; padding-left:18px; color:var(--muted); font-size:13px}
+    li{margin:6px 0}
+
+    .metaGrid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:10px;}
+    @media (max-width:520px){ .metaGrid{grid-template-columns:1fr} }
+    .meta{padding:12px; border-radius:var(--r2); border:1px solid var(--border); background:rgba(255,255,255,.04);}
+    .meta .k{font-size:12px; color:var(--muted2)}
+    .meta .v{font-size:13px; margin-top:2px}
+
+    .footer{
+      margin:28px 0 14px;
+      padding:16px;
+      border-radius:var(--r);
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      color:var(--muted2);
+      font-size:12px;
+      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
+    }
+    .kbd{
+      border:1px solid var(--border);
+      padding:2px 7px;
+      border-radius:8px;
+      font-size:11px;
+      color:var(--muted);
+      background:rgba(255,255,255,.04);
+    }
+  </style>
 </head>
+
 <body>
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a class="active" href="about.html">About</a></li>
-      <li><a href="experience.html">Experience</a></li>
-      <li><a href="education.html">Education</a></li>
-      <li><a href="skills.html">Skills</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
+  <div class="topbar">
+    <div class="wrap">
+      <nav aria-label="Primary">
+        <div class="brand">
+          <div class="dot" aria-hidden="true"></div>
+          <div>
+            <b>Yazan Alatrash</b>
+            <span>Thermal Hydraulics • Nuclear Safety • CFD</span>
+          </div>
+        </div>
 
-  <header>
-    <h1>About Me</h1>
-  </header>
+        <div class="navlinks">
+          <a class="pill" href="#experience">Experience</a>
+          <a class="pill" href="#skills">Skills</a>
+          <a class="pill" href="#publications">Publications</a>
+          <a class="pill" href="#education">Education</a>
+          <a class="pill" href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </div>
 
-  <main class="container">
-    <p>
-      Dedicated Thermal-hydraulics and CFD engineer with more than a decade experience...
-      <!-- Your detailed About Me text here -->
-    </p>
+  <main class="wrap">
+    <!-- HERO -->
+    <div class="hero" id="top">
+      <section class="card pad" aria-label="Intro">
+        <h1>Thermal Hydraulics & Nuclear Safety Engineer</h1>
+        <p class="subtitle">
+          System codes (RELAP5 / MARS) + CFD-scale investigations (CUPID / Fluent) • Safety analysis • Component & system modeling
+        </p>
+
+        <p class="lede">
+          Dedicated thermal-hydraulics and CFD engineer with more than a decade of experience performing thermal-hydraulics analysis
+          for nuclear power plants using system codes (RELAP5/MARS) and CFD-scale analysis. During my PhD, I contributed to development
+          of the 3D CFD and component-scale code CUPID, with a focus on subcooled flow boiling investigations. :contentReference[oaicite:2]{index=2}
+        </p>
+
+        <div class="ctaRow">
+          <a class="btn primary" href="#contact">Contact</a>
+          <a class="btn" href="#publications">Publications</a>
+          <!-- Optional: add your CV PDF into the repo and link it here -->
+          <!-- <a class="btn" href="Yazan-Alatrash-CV.pdf" target="_blank" rel="noopener">Download CV</a> -->
+        </div>
+
+        <div class="chips" aria-label="Highlights">
+          <span class="chip">Thermal-hydraulics analysis</span>
+          <span class="chip">Safety analysis</span>
+          <span class="chip">Subcooled flow boiling</span>
+          <span class="chip">CUPID code development</span>
+          <span class="chip">RELAP5 / MARS</span>
+        </div>
+      </section>
+
+      <aside class="card pad" aria-label="Quick info">
+        <div class="sectionHead">
+          <h2>Quick Info</h2>
+          <p class="muted2">From LinkedIn + CV</p>
+        </div>
+
+        <div class="metaGrid">
+          <div class="meta">
+            <div class="k">Location</div>
+            <div class="v">Netherlands</div>
+          </div>
+          <div class="meta">
+            <div class="k">Email</div>
+            <div class="v"><a href="mailto:yazan.atrash@gmail.com">yazan.atrash@gmail.com</a></div>
+          </div>
+
+          <div class="meta">
+            <div class="k">Phone</div>
+            <div class="v"><a href="tel:+4531216716">+45 31216716</a></div>
+          </div>
+
+          <div class="meta">
+            <div class="k">LinkedIn</div>
+            <div class="v">
+              <a href="https://www.linkedin.com/in/yazan-a-b7419244" target="_blank" rel="noopener">
+                linkedin.com/in/yazan-a-b7419244
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="sectionHead" style="margin-top:16px;">
+          <h2>Top Skills</h2>
+          <p class="muted2">As listed on LinkedIn</p>
+        </div>
+
+        <div class="chips">
+          <span class="chip">Calculations</span>
+          <span class="chip">Safety Analysis</span>
+          <span class="chip">Microsoft Azure</span>
+        </div>
+
+        <div class="sectionHead" style="margin-top:16px;">
+          <h2>Languages</h2>
+          <p class="muted2">Communication</p>
+        </div>
+        <div class="chips">
+          <span class="chip">English</span>
+          <span class="chip">Arabic</span>
+          <span class="chip">Korean (Elementary)</span>
+        </div>
+      </aside>
+    </div>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="card pad" aria-label="Experience">
+      <div class="sectionHead">
+        <h2>Experience</h2>
+        <p>Selected roles</p>
+      </div>
+
+      <div class="grid2">
+        <div class="box">
+          <div class="boxTop">
+            <b>NRG PALLAS — Senior Consultant (Thermal Hydraulic Safety)</b>
+            <span>Mar 2025 — Present · Arnhem, Netherlands</span>
+          </div>
+          <p>
+            Senior consultant within the thermal-hydraulics and safety team supporting clean and independent energy goals in the Netherlands. :contentReference[oaicite:3]{index=3}
+          </p>
+        </div>
+
+        <div class="box">
+          <div class="boxTop">
+            <b>Seaborg Technologies — Senior Thermal Hydraulics Specialist</b>
+            <span>Jul 2024 — Apr 2025 · Copenhagen, Denmark</span>
+          </div>
+          <p>
+            Thermal-hydraulics specialist supporting system/component analyses and design decisions. :contentReference[oaicite:4]{index=4}
+          </p>
+        </div>
+
+        <div class="box">
+          <div class="boxTop">
+            <b>Seaborg Technologies — Thermal Hydraulics Specialist</b>
+            <span>Dec 2022 — Jul 2024 · Copenhagen, Denmark</span>
+          </div>
+          <p>Thermal-hydraulics analysis support across reactor systems and components. :contentReference[oaicite:5]{index=5}</p>
+        </div>
+
+        <div class="box">
+          <div class="boxTop">
+            <b>Korea Atomic Energy Research Institute (KAERI) — PhD Candidate</b>
+            <span>Mar 2018 — Jan 2023 · Daejeon, Korea</span>
+          </div>
+          <p>
+            CUPID code team member; CFD/component-scale investigation of subcooled flow boiling. :contentReference[oaicite:6]{index=6}
+          </p>
+        </div>
+
+        <div class="box">
+          <div class="boxTop">
+            <b>Sejong University — Research Assistant</b>
+            <span>Sep 2017 — Feb 2018 · Seoul, Korea</span>
+          </div>
+          <p>Concept development of Ultimate Cooling Safety System (UCSS) for PWRs using MARS. :contentReference[oaicite:7]{index=7}</p>
+        </div>
+
+        <div class="box">
+          <div class="boxTop">
+            <b>Jordan Atomic Energy Commission (JAEC) — Nuclear Engineer</b>
+            <span>Mar 2015 — Aug 2017 · Irbid, Jordan</span>
+          </div>
+          <p>On-site nuclear safety / engineering role supporting the Jordan Research and Training Reactor (JRTR). :contentReference[oaicite:8]{index=8}</p>
+        </div>
+
+        <div class="box">
+          <div class="boxTop">
+            <b>Paul Scherrer Institut (PSI) — Guest Scientist</b>
+            <span>Oct 2016 — Dec 2016</span>
+          </div>
+          <p>
+            Pre-test calculations for CODEX-AIT-3 using RELAP5/SCDAPsim to guide experimental conditions (air/steam flow rates). :contentReference[oaicite:9]{index=9}
+          </p>
+        </div>
+
+        <div class="box">
+          <div class="boxTop">
+            <b>Jordan Nuclear Regulatory Commission (JNRC) — Intern</b>
+            <span>Jul 2011 — Aug 2011 · Amman, Jordan</span>
+          </div>
+          <p>Regulatory internship during undergraduate study; participated in daily tasks and missions. :contentReference[oaicite:10]{index=10}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="card pad" aria-label="Skills">
+      <div class="sectionHead">
+        <h2>Skills</h2>
+        <p>Tools & strengths</p>
+      </div>
+
+      <div class="grid2">
+        <div class="box">
+          <div class="boxTop">
+            <b>Engineering</b>
+            <span>Core capabilities</span>
+          </div>
+          <div class="chips">
+            <span class="chip">Thermal-hydraulics</span>
+            <span class="chip">CFD</span>
+            <span class="chip">Safety analysis</span>
+            <span class="chip">System modeling</span>
+            <span class="chip">Component-scale analysis</span>
+            <span class="chip">Flow boiling phenomena</span>
+          </div>
+        </div>
+
+        <div class="box">
+          <div class="boxTop">
+            <b>Software (from profile)</b>
+            <span>and common workflow</span>
+          </div>
+          <div class="chips">
+            <span class="chip">RELAP5</span>
+            <span class="chip">MARS</span>
+            <span class="chip">CUPID</span>
+            <span class="chip">Microsoft Azure</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PUBLICATIONS -->
+    <section id="publications" class="card pad" aria-label="Publications">
+      <div class="sectionHead">
+        <h2>Publications</h2>
+        <p>Selected works</p>
+      </div>
+
+      <div class="grid2">
+        <div class="box">
+          <div class="boxTop">
+            <b>Experimental and numerical investigation of local bubble parameters for subcooled flow boiling in a pressurized annulus</b>
+            <span class="kbd">Publication</span>
+          </div>
+          <p class="muted">Listed under Publications on LinkedIn profile. :contentReference[oaicite:11]{index=11}</p>
+        </div>
+
+        <div class="box">
+          <div class="boxTop">
+            <b>Experimental and analytical investigations of primary coolant pump coastdown phenomena for the Jordan Research and Training Reactor</b>
+            <span class="kbd">Publication</span>
+          </div>
+          <p class="muted">Listed under Publications on LinkedIn profile. :contentReference[oaicite:12]{index=12}</p>
+        </div>
+
+        <div class="box">
+          <div class="boxTop">
+            <b>Development of Program for Generation of Thermodynamic Properties Tables in CUPID Code</b>
+            <span class="kbd">Publication</span>
+          </div>
+          <p class="muted">Listed under Publications on LinkedIn profile. :contentReference[oaicite:13]{index=13}</p>
+        </div>
+
+        <div class="box">
+          <div class="boxTop">
+            <b>Application of the CUPID code for simulation of subcooled flow boiling phenomena</b>
+            <span class="kbd">Publication</span>
+          </div>
+          <p class="muted">Listed under Publications on LinkedIn profile. :contentReference[oaicite:14]{index=14}</p>
+        </div>
+
+        <div class="box">
+          <div class="boxTop">
+            <b>Investigation of subcooled boiling wall closures at high pressure using a two-phase CFD code</b>
+            <span class="kbd">Publication</span>
+          </div>
+          <p class="muted">Listed under Publications on LinkedIn profile. :contentReference[oaicite:15]{index=15}</p>
+        </div>
+      </div>
+
+      <p class="muted2" style="margin-top:12px;">
+        If you want, I can upgrade this section to include <b>journal/conference</b>, <b>year</b>, and <b>DOI links</b>—just paste the citation details or export them from Google Scholar.
+      </p>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="card pad" aria-label="Education">
+      <div class="sectionHead">
+        <h2>Education</h2>
+        <p>Academic background</p>
+      </div>
+
+      <div class="grid2">
+        <div class="box">
+          <div class="boxTop">
+            <b>(UST) University of Science and Technology, Korea — PhD</b>
+            <span>Advanced Nuclear System Engineering · 2018 — 2022</span>
+          </div>
+          <p>UST (KAERI campus). :contentReference[oaicite:16]{index=16}</p>
+        </div>
+
+        <div class="box">
+          <div class="boxTop">
+            <b>(UST) University of Science and Technology, Korea — MSc</b>
+            <span>Advanced Nuclear System Engineering · 2012 — 2014</span>
+          </div>
+          <p>UST (KAERI campus). :contentReference[oaicite:17]{index=17}</p>
+        </div>
+
+        <div class="box">
+          <div class="boxTop">
+            <b>Jordan University of Science and Technology — BSc</b>
+            <span>Nuclear Engineering · 2007 — 2012</span>
+          </div>
+          <p>Undergraduate degree. :contentReference[oaicite:18]{index=18}</p>
+        </div>
+
+        <div class="box">
+          <div class="boxTop">
+            <b>Honors & Awards</b>
+            <span class="kbd">Highlight</span>
+          </div>
+          <p>Science and Engineering Excellence Award. :contentReference[oaicite:19]{index=19}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section id="certifications" class="card pad" aria-label="Certifications">
+      <div class="sectionHead">
+        <h2>Certifications & Training</h2>
+        <p>Selected programs</p>
+      </div>
+
+      <ul>
+        <li>JRTR Design Training Program on Nuclear Fluidic Systems (KAERI) :contentReference[oaicite:20]{index=20}</li>
+        <li>KAERI Training Course for JRTR Operating Staffs :contentReference[oaicite:21]{index=21}</li>
+        <li>Novice Training for RELAP5 and SCDAP :contentReference[oaicite:22]{index=22}</li>
+        <li>The WINS Academy Foundation Module :contentReference[oaicite:23]{index=23}</li>
+      </ul>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="card pad" aria-label="Contact">
+      <div class="sectionHead">
+        <h2>Contact</h2>
+        <p>Fastest ways to reach me</p>
+      </div>
+
+      <div class="grid2">
+        <div class="box">
+          <div class="boxTop">
+            <b>Email</b>
+            <span class="kbd">recommended</span>
+          </div>
+          <p style="margin:10px 0 0"><a href="mailto:yazan.atrash@gmail.com">yazan.atrash@gmail.com</a></p>
+          <p class="muted2" style="margin-top:8px">Include a short subject like: “Thermal-hydraulics / safety analysis”.</p>
+        </div>
+
+        <div class="box">
+          <div class="boxTop">
+            <b>Phone</b>
+            <span class="muted2">Direct</span>
+          </div>
+          <p style="margin:10px 0 0"><a href="tel:+4531216716">+45 31216716</a></p>
+          <p class="muted2" style="margin-top:8px">If I miss your call, email is the quickest follow-up.</p>
+        </div>
+
+        <div class="box">
+          <div class="boxTop">
+            <b>LinkedIn</b>
+            <span class="muted2">Profile</span>
+          </div>
+          <p style="margin:10px 0 0">
+            <a href="https://www.linkedin.com/in/yazan-a-b7419244" target="_blank" rel="noopener">
+              linkedin.com/in/yazan-a-b7419244
+            </a>
+          </p>
+        </div>
+
+        <div class="box">
+          <div class="boxTop">
+            <b>Optional Links</b>
+            <span class="muted2">Add more</span>
+          </div>
+          <ul>
+            <li><a href="#" target="_blank" rel="noopener">Google Scholar</a> <span class="muted2">(replace #)</span></li>
+            <li><a href="#" target="_blank" rel="noopener">ResearchGate</a> <span class="muted2">(replace #)</span></li>
+            <li><a href="#" target="_blank" rel="noopener">GitHub</a> <span class="muted2">(replace #)</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      <div>© <span id="year"></span> Yazan Alatrash · Single-page portfolio.</div>
+      <div>Last updated: <span id="updated"></span></div>
+    </div>
   </main>
 
-  <footer>
-    <p>© 2025 Yazan Alatrash</p>
-  </footer>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("updated").textContent =
+      new Date(document.lastModified).toLocaleDateString(undefined, { year: "numeric", month: "short", day: "2-digit" });
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener("click", (e) => {
+        const id = a.getAttribute("href");
+        if (!id || id === "#") return;
+        const el = document.querySelector(id);
+        if (!el) return;
+        e.preventDefault();
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        history.pushState(null, "", id);
+      });
+    });
+  </script>
 </body>
 </html>
-
